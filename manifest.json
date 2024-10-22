@@ -1,24 +1,14 @@
 {
-    "manifest_version": 2,
-    "version": "0.1",
-    "name": "WhatsApp Extensão",
-    "content_scripts": [
-        {
-            "matches": [
-                "https://web.whatsapp.com/"
-            ],
-            "css": [
-                "styles.css"
-            ],
-            "js": [
-                "content.js"
-            ]
-        }
-    ],
-    "description": "Extensão para automoção de mensagens",
-    "author": "Wellinghton O.",
-    "browser_action": {
-        "default_title": "Whats",
-        "default_popup": "index.html"
-    }    
-}
+    "manifest_version": 3,
+    "name": "WhatsApp Message Sender",
+    "version": "1.0",
+    "description": "Enviar mensagens no WhatsApp Web com um clique",
+    "permissions": ["activeTab", "scripting"],
+    "action": {
+      "default_popup": "index.html"
+    },
+    "host_permissions": [
+      "https://web.whatsapp.com/*"
+    ]
+  }
+  
