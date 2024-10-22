@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whats</title>
+    <title>WhatsApp Message Sender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Olá mundo!</h1>
+    <h2>Enviar Mensagem</h2>
+    <input type="text" id="phone" placeholder="Número (com DDD)" />
+    <textarea id="message" placeholder="Digite a mensagem"></textarea>
+    <button id="sendBtn">Enviar Mensagem</button>
+
+    <script src="content.js"></script>
 </body>
 </html>
