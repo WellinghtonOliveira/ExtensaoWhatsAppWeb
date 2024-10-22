@@ -21,8 +21,12 @@ document.getElementById('sendBtn').addEventListener('click', () => {
             func: () => {
                 setTimeout(() => {
                     const sendButton = document.querySelector('span[data-icon="send"]');
-                    sendButton.click()
-                }, 5000);  // Ajuste o tempo se necessário
+                    if (sendButton) {
+                        sendButton.click();
+                    } else {
+                        alert('Botão de envio não encontrado. Por favor, envie manualmente.');
+                    }
+                }, 1000);  // Ajuste o tempo se necessário
             }
         });
     });
