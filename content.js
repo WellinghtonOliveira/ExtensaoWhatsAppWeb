@@ -1,9 +1,15 @@
-const contatos = document.querySelector('#contatosNome')
 const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
 
+const listaNomes = []
+
+function backgroundExtensao() {
+    console.log(listaNomes)
+}
+
 const contatosMensagens = (msg) => {
     let nomes = []
+    listaNomes.push(nomes)
 
     const listaConversa = document.querySelectorAll('._ak8q')
     
@@ -11,7 +17,6 @@ const contatosMensagens = (msg) => {
         const nomeContatos = lista.querySelector('span')
         nomes.push(nomeContatos.textContent)
     })
-    console.log(nomes)
 
 }
 
