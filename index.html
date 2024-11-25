@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="stylesheet" href="styles.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Message Sender</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 10px;
-        }
-        input, textarea {
-            width: 100%;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
-    <h2>Enviar Mensagem</h2>
-    <input type="text" id="phone" placeholder="Número (com DDD)" />
-    <textarea id="message" placeholder="Digite a mensagem"></textarea>
-    <button id="sendBtn">Enviar Mensagem</button>
+
+    <div class="container">
+        <form action="">
+            <h1 class="titulo">Envie sua mensagem</h1>
+            <div class="subContainer">
+                <select id="contatosNome"></select>
+                <input class="texto" type="text" id="texto" placeholder="Insira a mensagem">
+                <input class="enviar" type="submit">
+            </div>
+        </form>
+    </div>
 
     <script src="content.js"></script>
 </body>
