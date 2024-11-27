@@ -1,34 +1,47 @@
 const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
+const btnContatos = document.querySelector('.contatos')
 const listasNomes = []
 
 
 chrome.runtime.onMessage.addListener((nom) => {
-    listasNomes = nom.lista
+    console.log(nom.lista)
 })
 
-const contatosMensagens = (msg) => {
-    let nomes = []
-
-    const listaConversa = document.querySelectorAll('._ak8q')
+const contatosMensagens = () => {
+    const nomes = [];
+    const listaConversa = document.querySelectorAll('._ak8q');
     
     listaConversa.forEach((lista) => {
-        const nomeContatos = lista.querySelector('span')
-        nomes.push(nomeContatos.textContent)
-    })
+        const nomeContatos = lista.querySelector('span');
+        if (nomeContatos) {
+            nomes.push(nomeContatos.textContent);
+        }
+    });
 
-    chrome.runtime.sendMessage({lista: nomes})
-}
+    return nomes; // Retorna os nomes coletados
+};
 
-form.addEventListener('submit', async (event) => {
-    event.preventDefault()
+btnContatos.addEventListener('click', async () => {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    const [tab] = await chrome.tabs.query({active: true, currentWindow: true})
+    chrome.scripting.executeScript(
+        {
+            target: { tabId: tab.id },
+            func: contatosMensagens,
+        },
+        (results) => {
+            if (chrome.runtime.lastError) {
+                console.error('Erro ao executar o script:', chrome.runtime.lastError.message);
+                return;
+            }
 
-    chrome.scripting.executeScript({
-        target: {tabId: tab.id},
-        function: contatosMensagens,
-        args: [mensagem.value]
-    })
+            // Captura os resultados do script injetado
+            const nomes = results[0]?.result || [];
+            console.log('Nomes coletados:', nomes);
 
-})
+            // Você pode agora armazenar, exibir ou usar esses nomes
+            listasNomes.push(...nomes);
+        }
+    );
+});
