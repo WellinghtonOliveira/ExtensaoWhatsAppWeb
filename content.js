@@ -1,14 +1,8 @@
 const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
-const listaNomes = []
-
-
-
-
 
 const contatosMensagens = (msg) => {
     let nomes = []
-    listaNomes.push(nomes)
 
     const listaConversa = document.querySelectorAll('._ak8q')
     
@@ -16,11 +10,9 @@ const contatosMensagens = (msg) => {
         const nomeContatos = lista.querySelector('span')
         nomes.push(nomeContatos.textContent)
     })
-    console.log(listaNomes)
 }
 
-
-form.addEventListener('submit', async (event) => {
+form.addEventListener('DOMContentLoader', async (event) => {
     event.preventDefault()
 
     const [tab] = await chrome.tabs.query({active: true, currentWindow: true})
