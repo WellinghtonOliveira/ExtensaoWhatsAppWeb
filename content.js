@@ -1,6 +1,13 @@
 const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
 
+function carregar() {
+}
+
+chrome.runtime.onMessage.addListener((nom) => {
+    console.log(nom.lista)
+})
+
 const contatosMensagens = (msg) => {
     let nomes = []
 
@@ -11,7 +18,7 @@ const contatosMensagens = (msg) => {
         nomes.push(nomeContatos.textContent)
     })
 
-    console.log(nomesPosition)
+    chrome.runtime.sendMessage({lista: nomes})
 }
 
 form.addEventListener('submit', async (event) => {
