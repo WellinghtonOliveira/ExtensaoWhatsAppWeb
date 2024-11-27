@@ -10,9 +10,11 @@ const contatosMensagens = (msg) => {
         const nomeContatos = lista.querySelector('span')
         nomes.push(nomeContatos.textContent)
     })
+
+    console.log(nomesPosition)
 }
 
-form.addEventListener('DOMContentLoader', async (event) => {
+form.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     const [tab] = await chrome.tabs.query({active: true, currentWindow: true})
