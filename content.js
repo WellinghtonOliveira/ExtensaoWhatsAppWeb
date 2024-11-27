@@ -1,11 +1,10 @@
 const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
+const listasNomes = []
 
-function carregar() {
-}
 
 chrome.runtime.onMessage.addListener((nom) => {
-    console.log(nom.lista)
+    listasNomes = nom.lista
 })
 
 const contatosMensagens = (msg) => {
