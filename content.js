@@ -3,11 +3,6 @@ const form = document.querySelector('form')
 const btnContatos = document.querySelector('.contatos')
 const listasNomes = []
 
-
-chrome.runtime.onMessage.addListener((nom) => {
-    console.log(nom.lista)
-})
-
 const contatosMensagens = () => {
     const nomes = [];
     const listaConversa = document.querySelectorAll('._ak8q');
@@ -19,7 +14,8 @@ const contatosMensagens = () => {
         }
     });
 
-    return nomes; // Retorna os nomes coletados
+    localStorage.setItem('meusContatos', JSON.stringify(nomes))
+    console.log(nomes)
 };
 
 btnContatos.addEventListener('click', async () => {
@@ -28,20 +24,7 @@ btnContatos.addEventListener('click', async () => {
     chrome.scripting.executeScript(
         {
             target: { tabId: tab.id },
-            func: contatosMensagens,
-        },
-        (results) => {
-            if (chrome.runtime.lastError) {
-                console.error('Erro ao executar o script:', chrome.runtime.lastError.message);
-                return;
-            }
-
-            // Captura os resultados do script injetado
-            const nomes = results[0]?.result || [];
-            console.log('Nomes coletados:', nomes);
-
-            // Você pode agora armazenar, exibir ou usar esses nomes
-            listasNomes.push(...nomes);
+            func: contatosMensagens
         }
     );
 });
