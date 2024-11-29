@@ -3,6 +3,7 @@ const form = document.querySelector('form')
 const btnContatos = document.querySelector('.contatos')
 const listaNomes = []
 // passar as informaçoes para dentro da estensao
+//conseguir o comunicamento
 chrome.runtime.onMessage.addListener((m) => {
     listaNomes.push(...m.lNomes)
     console.log(listaNomes)
