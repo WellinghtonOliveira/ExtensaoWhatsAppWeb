@@ -1,14 +1,20 @@
 {
-    "manifest_version": 3,
-    "name": "WhatsApp Message Sender",
-    "version": "1.0",
-    "description": "Enviar mensagens no WhatsApp Web com um clique",
-    "permissions": ["activeTab", "scripting", "storage"],
-    "action": {
-      "default_popup": "index.html"
-    },
-    "host_permissions": [
-      "https://web.whatsapp.com/*"
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "WhatsApp Message Sender",
+  "version": "1.0",
+  "description": "Enviar mensagens no WhatsApp Web com um clique",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "index.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ]
+}
