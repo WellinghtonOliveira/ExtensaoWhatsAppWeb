@@ -5,20 +5,11 @@ const nomeSelect = document.querySelector('#contatosNome')
 const listaNomes = []
 
 
-function addOptionsContato() {
-    listaNomes.forEach((nome) => {
-        const contato = document.createElement('option')
-        contato.textContent = nome
-        contato.value = nome
-        nomeSelect.appendChild(contato)
-    })
-}
-
 chrome.runtime.onMessage.addListener((m) => {
     if (m.lNomes) {
         listaNomes.push(...m.lNomes);
     }
-    addOptionsContato();
+    console.log(m.lNomes)
 })
 
 const contatosMensagens = () => {
