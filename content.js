@@ -2,23 +2,24 @@ const mensagem = document.querySelector('.texto')
 const form = document.querySelector('form')
 const btnContatos = document.querySelector('.contatos')
 const nomeSelect = document.querySelector('#contatosNome')
-const listaNomes = []
-
 
 chrome.runtime.onMessage.addListener((m) => {
-    if (m.lNomes) {
-        listaNomes.push(...m.lNomes);
-    }
     console.log(m.lNomes)
+//nao deixar o canal fechar
+    return true
 })
 
 const contatosMensagens = () => {
     const nomes = [];
     const listaConversa = document.querySelectorAll('._ak8q');
-    const nomesContt = listaConversa.querySelectorAll('span')
-    console.log(nomesContt)
 
-    chrome.runtime.sendMessage({ lNomes: nomes })
+    listaConversa.forEach((lista) => {
+        const nomeContatos = lista.querySelector('span');
+        if (nomeContatos) {
+            nomes.push(nomeContatos.textContent);
+        }
+    });
+    chrome.runtime.sendMessage({ lNomes: 'teste' })
 };
 
 
@@ -29,12 +30,9 @@ btnContatos.addEventListener('click', async () => {
         {
             target: { tabId: tab.id },
             func: contatosMensagens
-        },
-        () => {
-            setTimeout(() => {
-                console.log('Lista carregada')
-            }, 1000)
         }
     );
+
+    console.log('aq funcionou')
 });
 
