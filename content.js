@@ -15,13 +15,9 @@ chrome.runtime.onMessage.addListener((m) => {
 const contatosMensagens = () => {
     const nomes = [];
     const listaConversa = document.querySelectorAll('._ak8q');
+    const nomesContt = listaConversa.querySelectorAll('span')
+    console.log(nomesContt)
 
-    listaConversa.forEach((lista) => {
-        const nomeContatos = lista.querySelector('span');
-        if (nomeContatos) {
-            nomes.push(nomeContatos.textContent);
-        }
-    });
     chrome.runtime.sendMessage({ lNomes: nomes })
 };
 
