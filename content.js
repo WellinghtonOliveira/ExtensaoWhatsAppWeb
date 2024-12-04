@@ -3,9 +3,15 @@ const form = document.querySelector('form')
 const btnContatos = document.querySelector('.contatos')
 const nomeSelect = document.querySelector('#contatosNome')
 
+let contatosRecebidos = false
+
 chrome.runtime.onMessage.addListener((m) => {
-    console.log(m.lNomes)
-//nao deixar o canal fechar
+    if (!contatosRecebidos) {
+        console.log(m.lNomes)
+        contatosRecebidos = true
+    }else {
+        console.log('ja recebido')
+    }
     return true
 })
 
@@ -32,7 +38,5 @@ btnContatos.addEventListener('click', async () => {
             func: contatosMensagens
         }
     );
-
-    console.log('aq funcionou')
 });
 
