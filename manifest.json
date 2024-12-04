@@ -6,7 +6,7 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage"
+    "tabs"
   ],
   "action": {
     "default_popup": "index.html"
@@ -15,6 +15,6 @@
     "service_worker": "background.js"
   },
   "host_permissions": [
-    "https://web.whatsapp.com/*"
+    "https://web.whatsapp.com/"
   ]
 }
