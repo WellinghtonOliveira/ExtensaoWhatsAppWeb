@@ -3,15 +3,8 @@ const form = document.querySelector('form')
 const btnContatos = document.querySelector('.contatos')
 const nomeSelect = document.querySelector('#contatosNome')
 
-let contatosRecebidos = false
-
-chrome.runtime.onMessage.addListener((m) => {
-    if (!contatosRecebidos) {
-        console.log(m.lNomes)
-        contatosRecebidos = true
-    }else {
-        console.log('ja recebido')
-    }
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    console.log(message.lNomes)
     return true
 })
 
@@ -25,18 +18,23 @@ const contatosMensagens = () => {
             nomes.push(nomeContatos.textContent);
         }
     });
-    chrome.runtime.sendMessage({ lNomes: 'teste' })
+
+    chrome.runtime.sendMessage({ lNomes: nomes })
 };
 
 
 btnContatos.addEventListener('click', async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-    chrome.scripting.executeScript(
-        {
-            target: { tabId: tab.id },
-            func: contatosMensagens
-        }
-    );
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: contatosMensagens
+    }).then(() => {
+        console.log("Script executado com sucesso!")
+    }).catch((error) => {
+        console.error("Erro ao executar script:", error)
+    })
+    console.log('teste')
+
 });
 
