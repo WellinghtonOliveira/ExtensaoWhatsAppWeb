@@ -30,7 +30,5 @@ btnContatos.addEventListener('click', () => {
         target: { tabId: tab.id },
         func: contatosMensagens
     })
-
-    console.log('teste')
 })
 
