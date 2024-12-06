@@ -6,6 +6,7 @@ const nomeSelect = document.querySelector('#contatosNome');
 let lista = []
 
 function clickBtnContatos() {
+    clickBtnContatos()
     console.log(lista);
 
 }
@@ -42,5 +43,4 @@ btnContatos.addEventListener('click', () => {
         });
     });
 
-    clickBtnContatos()
 });
