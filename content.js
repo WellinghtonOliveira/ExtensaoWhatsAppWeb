@@ -5,12 +5,6 @@ const nomeSelect = document.querySelector('#contatosNome');
 
 let lista = []
 
-function clickBtnContatos() {
-    clickBtnContatos()
-    console.log(lista);
-
-}
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     lista.push(message.lNomes)
     return true; // Para manter o canal aberto (não obrigatório nesse caso).
